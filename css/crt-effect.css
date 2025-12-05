@@ -1,0 +1,357 @@
+/* ====================
+   PIXEL PORTFOLIO - CRT EFFECT
+   Retro CRT Monitor Scanlines & Effects
+   ==================== */
+
+/* ===== CRT OVERLAY ===== */
+#crt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#crt-overlay.active {
+    opacity: 1;
+}
+
+/* ===== SCANLINES PATTERN ===== */
+#crt-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    animation: scanlines 8s linear infinite;
+    pointer-events: none;
+}
+
+/* ===== CRT VIGNETTE ===== */
+#crt-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
+    pointer-events: none;
+}
+
+/* ===== SCANLINE ANIMATION ===== */
+@keyframes scanlines {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(10px);
+    }
+}
+
+/* ===== CRT FLICKER EFFECT ===== */
+@keyframes crtFlicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+    20%, 24%, 55% {
+        opacity: 0.95;
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+    }
+}
+
+.crt-flicker {
+    animation: crtFlicker 0.15s infinite;
+}
+
+/* ===== CRT CURVE EFFECT ===== */
+@keyframes crtBump {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.002);
+    }
+}
+
+.crt-bump {
+    animation: crtBump 0.5s ease-in-out infinite;
+}
+
+/* ===== PHOSPHOR GLOW ===== */
+@keyframes phosphorGlow {
+    0%, 100% {
+        filter: brightness(1) drop-shadow(0 0 2px rgba(0, 255, 255, 0.3));
+    }
+    50% {
+        filter: brightness(1.05) drop-shadow(0 0 8px rgba(0, 255, 255, 0.6));
+    }
+}
+
+.phosphor-glow {
+    animation: phosphorGlow 3s ease-in-out infinite;
+}
+
+/* ===== COLOR SHIFT (CRT RGB ABERRATION) ===== */
+@keyframes rgbShift {
+    0% {
+        text-shadow: 
+            -1px 0 0 red,
+            1px 0 0 cyan;
+    }
+    50% {
+        text-shadow: 
+            -2px 0 0 red,
+            2px 0 0 cyan;
+    }
+    100% {
+        text-shadow: 
+            -1px 0 0 red,
+            1px 0 0 cyan;
+    }
+}
+
+.rgb-shift {
+    animation: rgbShift 0.3s ease-in-out;
+}
+
+/* ===== INTERLACE EFFECT ===== */
+@keyframes interlace {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 2px;
+    }
+}
+
+body.crt-mode {
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.1) 0px,
+            rgba(0, 0, 0, 0.1) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+    animation: interlace 0.1s steps(2, end) infinite;
+}
+
+/* ===== CRT BORDER ===== */
+.crt-border {
+    border: 2px solid #333;
+    border-radius: 20px;
+    box-shadow: 
+        inset 0 0 20px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+/* ===== RETRO TUBE MONITOR BEZEL ===== */
+.crt-bezel {
+    position: relative;
+    border-radius: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    box-shadow: 
+        inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+        inset 5px 5px 15px rgba(0, 0, 0, 0.5),
+        0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+/* ===== SCREEN REFLECTION ===== */
+.screen-reflection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent);
+    border-radius: 20px 20px 0 0;
+    pointer-events: none;
+}
+
+/* ===== CHROMATIC ABERRATION EFFECT ===== */
+@keyframes chromaticAberration {
+    0% {
+        filter: url(#chromatic-0);
+    }
+    50% {
+        filter: url(#chromatic-1);
+    }
+    100% {
+        filter: url(#chromatic-0);
+    }
+}
+
+.chromatic {
+    animation: chromaticAberration 0.3s ease-in-out;
+}
+
+/* ===== KEYFRAME EFFECTS FOR CRT MODES ===== */
+
+/* Warm CRT Mode */
+@keyframes warmCRT {
+    0%, 100% {
+        filter: sepia(0.3) saturate(0.8) brightness(1);
+    }
+    50% {
+        filter: sepia(0.35) saturate(0.85) brightness(1.02);
+    }
+}
+
+.warm-crt {
+    animation: warmCRT 2s ease-in-out infinite;
+}
+
+/* Cool CRT Mode */
+@keyframes coolCRT {
+    0%, 100% {
+        filter: hue-rotate(10deg) saturate(1.2) brightness(1);
+    }
+    50% {
+        filter: hue-rotate(15deg) saturate(1.3) brightness(1.02);
+    }
+}
+
+.cool-crt {
+    animation: coolCRT 2s ease-in-out infinite;
+}
+
+/* ===== POWER INDICATOR LIGHT ===== */
+@keyframes powerLight {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        background-color: rgba(0, 255, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+        background-color: rgba(0, 255, 0, 0.5);
+    }
+}
+
+.power-light {
+    animation: powerLight 1.5s ease-in-out infinite;
+}
+
+/* ===== RASTER EFFECT ===== */
+.raster-effect {
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.1),
+            rgba(0, 0, 0, 0.1) 1px,
+            transparent 1px,
+            transparent 2px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.05) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+}
+
+/* ===== NEGATIVE SPACE CRT ===== */
+@keyframes negativeFlash {
+    0%, 100% {
+        filter: invert(0);
+    }
+    50% {
+        filter: invert(0.05);
+    }
+}
+
+.negative-flash {
+    animation: negativeFlash 4s ease-in-out infinite;
+}
+
+/* ===== CRT GREEN TEXT MODE ===== */
+.green-monitor {
+    color: #00ff00;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+    background-color: #001a00;
+}
+
+.green-monitor .pixel-text {
+    color: #00ff00;
+    text-shadow: 2px 2px 0px #000000,
+                 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+/* ===== CRT AMBER TEXT MODE ===== */
+.amber-monitor {
+    color: #ffaa00;
+    text-shadow: 0 0 10px rgba(255, 170, 0, 0.6);
+    background-color: #1a0f00;
+}
+
+.amber-monitor .pixel-text {
+    color: #ffaa00;
+    text-shadow: 2px 2px 0px #000000,
+                 0 0 10px rgba(255, 170, 0, 0.5);
+}
+
+/* ===== CRT CATHODE RAY EFFECT ===== */
+@keyframes cathodeRay {
+    0% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+}
+
+.cathode-ray {
+    animation: cathodeRay 1s ease-out;
+}
+
+/* ===== RESPONSIVE CRT EFFECTS ===== */
+@media (prefers-reduced-motion: reduce) {
+    #crt-overlay::before,
+    .crt-flicker,
+    .crt-bump,
+    .phosphor-glow,
+    .warm-crt,
+    .cool-crt,
+    .power-light,
+    .negative-flash {
+        animation: none !important;
+    }
+}
+
+/* ===== CRT TOGGLE STATES ===== */
+body:not(.crt-mode) #crt-overlay {
+    display: none;
+}
+
+/* ===== COMBINED CRT + GAME EFFECTS ===== */
+.crt-mode .screen {
+    animation: interlace 0.1s steps(2, end) infinite;
+}
+
+.crt-mode .arcade-title h1 {
+    animation: glitch 3s infinite, crtFlicker 0.15s infinite;
+}
+
+.crt-mode .glow-cyan {
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.8));
+}

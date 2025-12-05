@@ -1,0 +1,424 @@
+/* ====================
+   PIXEL PORTFOLIO - ANIMATIONS
+   Arcade Game Transitions & Effects
+   ==================== */
+
+/* ===== SCREEN TRANSITIONS ===== */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pixelExplode {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pixelPop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ===== TEXT ANIMATIONS ===== */
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes caret {
+    0%, 49% {
+        border-right-color: rgba(255, 255, 255, 1);
+    }
+    50%, 100% {
+        border-right-color: rgba(255, 255, 255, 0);
+    }
+}
+
+@keyframes scanlines {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(10px);
+    }
+}
+
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+    }
+    20%, 24%, 55% {
+        opacity: 0.3;
+    }
+}
+
+/* ===== SPRITE ANIMATIONS ===== */
+@keyframes spriteFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes spriteWalk {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes spriteAttack {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(-5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* ===== UI ELEMENT ANIMATIONS ===== */
+@keyframes buttonPress {
+    0% {
+        transform: translate(0, 0);
+        box-shadow: 4px 4px 0px;
+    }
+    50% {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0px;
+    }
+    100% {
+        transform: translate(0, 0);
+        box-shadow: 4px 4px 0px;
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        border-color: rgba(0, 255, 255, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        border-color: rgba(0, 255, 255, 1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ===== LOADER/SPINNER ANIMATIONS ===== */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pixelSpin {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    25% {
+        transform: rotate(90deg) scale(1.1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1);
+    }
+    75% {
+        transform: rotate(270deg) scale(1.1);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* ===== DAMAGE/HIT EFFECT ===== */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes colorShift {
+    0% {
+        color: #00ffff;
+    }
+    50% {
+        color: #ff00ff;
+    }
+    100% {
+        color: #00ffff;
+    }
+}
+
+/* ===== SCREEN EFFECTS ===== */
+@keyframes glitchShift {
+    0% {
+        text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
+    }
+    20% {
+        text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff;
+    }
+    40% {
+        text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff;
+    }
+    60% {
+        text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff;
+    }
+    80% {
+        text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
+    }
+    100% {
+        text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff;
+    }
+}
+
+/* ===== BORDER ANIMATIONS ===== */
+@keyframes borderPulse {
+    0%, 100% {
+        border-color: #ffffff;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        border-color: #00ffff;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    }
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        box-shadow: inset 0 0 0 1px #ffffff, 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        box-shadow: inset 0 0 0 1px #00ffff, 0 0 20px rgba(0, 255, 255, 0.8);
+    }
+}
+
+/* ===== TRANSITION CLASSES ===== */
+.transition-slide-left {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+.transition-slide-right {
+    animation: slideInRight 0.5s ease-out;
+}
+
+.transition-slide-up {
+    animation: slideInUp 0.5s ease-out;
+}
+
+.transition-pop {
+    animation: pixelPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.transition-shake {
+    animation: shake 0.3s ease-in-out;
+}
+
+.transition-glitch {
+    animation: glitchShift 0.3s ease-in-out;
+}
+
+/* ===== APPLY ANIMATIONS TO ELEMENTS ===== */
+.fighter-card {
+    animation: slideInUp 0.6s ease-out both;
+}
+
+.fighter-card:nth-child(1) { animation-delay: 0s; }
+.fighter-card:nth-child(2) { animation-delay: 0.1s; }
+.fighter-card:nth-child(3) { animation-delay: 0.2s; }
+.fighter-card:nth-child(4) { animation-delay: 0.3s; }
+
+.profile-section {
+    animation: slideInUp 0.5s ease-out;
+}
+
+.project-cartridge {
+    animation: slideInUp 0.5s ease-out both;
+}
+
+.project-cartridge:nth-child(1) { animation-delay: 0s; }
+.project-cartridge:nth-child(2) { animation-delay: 0.1s; }
+.project-cartridge:nth-child(3) { animation-delay: 0.2s; }
+.project-cartridge:nth-child(4) { animation-delay: 0.3s; }
+.project-cartridge:nth-child(5) { animation-delay: 0.4s; }
+.project-cartridge:nth-child(6) { animation-delay: 0.5s; }
+
+.timeline-item {
+    animation: slideInLeft 0.5s ease-out both;
+}
+
+.timeline-item:nth-child(1) { animation-delay: 0s; }
+.timeline-item:nth-child(2) { animation-delay: 0.1s; }
+.timeline-item:nth-child(3) { animation-delay: 0.2s; }
+
+/* ===== BUTTON STATES ===== */
+.btn-arcade:hover {
+    animation: buttonPress 0.3s ease-in-out;
+}
+
+.btn-arcade.active {
+    background-color: #ff00ff;
+    color: #0a1a2f;
+}
+
+/* ===== SPRITE ANIMATIONS ===== */
+.sprite-float {
+    animation: spriteFloat 3s ease-in-out infinite;
+}
+
+.sprite-walk {
+    animation: spriteWalk 2s ease-in-out infinite;
+}
+
+.sprite-attack {
+    animation: spriteAttack 0.6s ease-in-out;
+}
+
+/* ===== GLOW EFFECTS ===== */
+.glow-cyan {
+    animation: glow 2s ease-in-out infinite;
+}
+
+.glow-magenta {
+    border: 2px solid #ff00ff;
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* ===== INTERACTIVE HOVER EFFECTS ===== */
+.clickable:hover {
+    cursor: pointer;
+    filter: brightness(1.2);
+}
+
+.clickable:active {
+    animation: pixelExplode 0.3s ease-out;
+}
+
+/* ===== LOADING STATES ===== */
+.loading {
+    animation: pixelSpin 1s linear infinite;
+}
+
+.loading-pulse {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* ===== SCREEN OVERLAY ANIMATIONS ===== */
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.5;
+    }
+}
+
+.overlay-fade {
+    animation: fadeInOverlay 0.3s ease-out;
+}
+
+/* ===== COLOR SHIFT ANIMATIONS ===== */
+@keyframes colorCycle {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.color-cycle {
+    animation: colorCycle 4s linear infinite;
+}
+
+/* ===== MOTION PREFERENCES ===== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

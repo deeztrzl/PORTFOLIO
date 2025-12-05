@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade BGM Generator</title>
+    <style>
+        body {
+            background: #0a1a2f;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #00ffff;
+            text-shadow: 2px 2px #ff00ff;
+        }
+        .control-group {
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px solid #00ffff;
+            background: rgba(10, 26, 47, 0.8);
+        }
+        button {
+            background: #000;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #00ffff;
+            color: #000;
+        }
+        .info {
+            background: rgba(0, 255, 0, 0.1);
+            border-left: 4px solid #00ff00;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎵 8-Bit Arcade BGM Generator</h1>
+    
+    <div class="info">
+        <p><strong>Note:</strong> This generator creates a simple 8-bit background music loop using Web Audio API.</p>
+        <p>The generated audio can be downloaded and used in your portfolio, or the audio system will generate sound effects on-the-fly.</p>
+    </div>
+    
+    <div class="control-group">
+        <h2>Generate BGM</h2>
+        <label>
+            Duration (seconds): 
+            <input type="number" id="duration" value="30" min="5" max="120">
+        </label>
+        <br>
+        <button onclick="generateBGM()">🎮 Generate Arcade BGM</button>
+        <button onclick="playBGM()">▶️ Play</button>
+        <button onclick="stopBGM()">⏹️ Stop</button>
+    </div>
+    
+    <div class="control-group">
+        <h2>Download</h2>
+        <p>Once generated, you can download the audio file and place it in:</p>
+        <code>assets/audio/arcade-bgm.mp3</code>
+        <br>
+        <button onclick="downloadBGM()">💾 Download as WAV</button>
+    </div>
+    
+    <audio id="bgm-player"></audio>
+    
+    <script>
+        let audioBuffer = null;
+        let audioContext = null;
+        let oscillator = null;
+        let gainNode = null;
+        
+        function getAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            return audioContext;
+        }
+        
+        function generateBGM() {
+            const duration = parseInt(document.getElementById('duration').value);
+            const ctx = getAudioContext();
+            
+            // Create a simple 8-bit melody
+            const sampleRate = ctx.sampleRate;
+            const samples = sampleRate * duration;
+            const audioData = new Float32Array(samples);
+            
+            // Simple looping melody pattern
+            const pattern = [262, 262, 294, 330, 294, 262, 330, 392]; // C major scale
+            const beatDuration = sampleRate / 8; // 8 beats per second
+            
+            for (let i = 0; i < samples; i++) {
+                const beatIndex = Math.floor((i / beatDuration) % pattern.length);
+                const freq = pattern[beatIndex];
+                
+                // Generate square wave
+                const time = i / sampleRate;
+                const period = 1 / freq;
+                const sample = ((time % period) < (period / 2)) ? 0.3 : -0.3;
+                
+                // Add envelope to prevent clicks
+                const beatProgress = (i % beatDuration) / beatDuration;
+                const envelope = beatProgress < 0.1 ? beatProgress / 0.1 : 
+                               beatProgress > 0.9 ? (1 - beatProgress) / 0.1 : 1;
+                
+                audioData[i] = sample * envelope * 0.2;
+            }
+            
+            // Create audio buffer
+            audioBuffer = ctx.createBuffer(1, samples, sampleRate);
+            audioBuffer.copyToChannel(audioData, 0);
+            
+            alert(`✅ BGM Generated! Duration: ${duration}s\n\nNote: You'll need to download it as MP3 using a separate tool or use an online converter.`);
+        }
+        
+        function playBGM() {
+            if (!audioBuffer) {
+                alert('❌ Generate BGM first!');
+                return;
+            }
+            
+            const ctx = getAudioContext();
+            
+            // Stop if already playing
+            if (oscillator) {
+                oscillator.stop();
+            }
+            
+            oscillator = ctx.createOscillator();
+            gainNode = ctx.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(ctx.destination);
+            
+            // Create simple melody
+            const now = ctx.currentTime;
+            const pattern = [262, 262, 294, 330, 294, 262, 330, 392];
+            const beatDuration = 0.25;
+            
+            pattern.forEach((freq, index) => {
+                oscillator.frequency.setValueAtTime(freq, now + index * beatDuration);
+            });
+            
+            gainNode.gain.setValueAtTime(0.2, now);
+            oscillator.type = 'square';
+            oscillator.start(now);
+            oscillator.stop(now + pattern.length * beatDuration);
+        }
+        
+        function stopBGM() {
+            if (oscillator) {
+                oscillator.stop();
+                oscillator = null;
+            }
+        }
+        
+        function downloadBGM() {
+            if (!audioBuffer) {
+                alert('❌ Generate BGM first!');
+                return;
+            }
+            
+            // Convert to WAV
+            const numberOfChannels = audioBuffer.numberOfChannels;
+            const sampleRate = audioBuffer.sampleRate;
+            const format = 1; // PCM
+            const bitDepth = 16;
+            
+            const bytesPerSample = bitDepth / 8;
+            const blockAlign = numberOfChannels * bytesPerSample;
+            
+            const audioData = [];
+            for (let channel = 0; channel < numberOfChannels; channel++) {
+                audioData.push(audioBuffer.getChannelData(channel));
+            }
+            
+            const dataLength = audioBuffer.length * numberOfChannels * bytesPerSample;
+            const buffer = new ArrayBuffer(44 + dataLength);
+            const view = new DataView(buffer);
+            
+            // Write WAV header
+            const writeString = (offset, string) => {
+                for (let i = 0; i < string.length; i++) {
+                    view.setUint8(offset + i, string.charCodeAt(i));
+                }
+            };
+            
+            writeString(0, 'RIFF');
+            view.setUint32(4, 36 + dataLength, true);
+            writeString(8, 'WAVE');
+            writeString(12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, format, true);
+            view.setUint16(22, numberOfChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * blockAlign, true);
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitDepth, true);
+            writeString(36, 'data');
+            view.setUint32(40, dataLength, true);
+            
+            let index = 44;
+            const volume = 0.8;
+            for (let i = 0; i < audioBuffer.length; i++) {
+                for (let channel = 0; channel < numberOfChannels; channel++) {
+                    let sample = Math.max(-1, Math.min(1, audioData[channel][i]));
+                    sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF;
+                    view.setInt16(index, sample, true);
+                    index += 2;
+                }
+            }
+            
+            // Download
+            const blob = new Blob([buffer], { type: 'audio/wav' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'arcade-bgm.wav';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
