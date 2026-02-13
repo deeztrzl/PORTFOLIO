@@ -99,7 +99,9 @@
       "specialMoveDesc": "Unleash a powerful hardware integration attack that fuses electronics and software.",
       "projects": [
         "canopy-system",
-        "hospital-sim"
+        "hospital-sim",
+        "identity-verification",
+        "typer-game"
       ]
     },
     "speaker": {

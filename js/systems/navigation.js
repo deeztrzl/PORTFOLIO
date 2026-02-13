@@ -94,8 +94,11 @@ class NavigationSystem {
     }
     
     openProjectModalWithData(projectId) {
-        const projectData = projectsData[projectId];
-        if (!projectData) return;
+        const projectData = window.projectsData[projectId];
+        if (!projectData) {
+            console.warn('Project not found:', projectId);
+            return;
+        }
         
         const modal = document.getElementById('project-modal');
         const modalTitle = document.getElementById('modal-title');
