@@ -121,12 +121,49 @@ class ProfileGenerator {
             `;
         }).join('');
     }
+
+    static generateAboutSection() {
+        if (!window.profileData) {
+            console.warn('profileData not loaded yet');
+            return;
+        }
+
+        const aboutContent = document.getElementById('about-content');
+        if (!aboutContent) return;
+
+        const profileData = window.profileData;
+        const educationHTML = (profileData.education || []).map(edu => `
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h4>${edu.institution}</h4>
+                    <p>${edu.program}</p>
+                    <p class="timeline-date">${edu.period}</p>
+                </div>
+            </div>
+        `).join('');
+
+        const aboutHTML = `
+            <div class="about-bio">
+                <p class="pixel-text">${profileData.bio}</p>
+            </div>
+
+            <div class="timeline">
+                <h3 class="pixel-text">EDUCATION & EXPERIENCE</h3>
+                ${educationHTML}
+            </div>
+        `;
+
+        aboutContent.innerHTML = aboutHTML;
+        console.log('About modal content generated from database');
+    }
 }
 
-// Generate profiles when DOM is ready
+// Generate profiles and about section when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     // Wait a bit for dataLoader to fetch JSON
     setTimeout(() => {
         ProfileGenerator.generateProfileSections();
+        ProfileGenerator.generateAboutSection();
     }, 100);
 });

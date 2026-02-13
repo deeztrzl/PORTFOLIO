@@ -7,45 +7,93 @@ class NavigationSystem {
     constructor() {
         this.currentScreen = 'screen-intro';
         this.screenHistory = ['screen-intro'];
+        this.activeModal = null;
         
         this.init();
     }
     
     init() {
+        this.setupProjectModal();
         this.setupEventListeners();
         this.setupKeyboardShortcuts();
-        this.setupModal();
     }
     
-    setupModal() {
+    setupProjectModal() {
         const modal = document.getElementById('project-modal');
         const closeBtn = document.getElementById('modal-close');
         
-        // Close button
         if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                this.closeModal();
-            });
+            closeBtn.addEventListener('click', () => this.closeModal('project-modal'));
         }
         
-        // Close on background click
         if (modal) {
             modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    this.closeModal();
-                }
+                if (e.target === modal) this.closeModal('project-modal');
             });
         }
-        
-        // Escape key to close
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-                this.closeModal();
-            }
-        });
     }
     
-    openModal(projectId) {
+    openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+        
+        if (modalId === 'project-modal') {
+            this.openProjectModal(modal);
+        } else if (modalId === 'about-modal') {
+            this.openGenericModal(modalId);
+        } else if (modalId === 'contact-modal') {
+            this.openGenericModal(modalId);
+        }
+    }
+
+    openProjectModal(modal) {
+        // Project modal will be opened with specific data
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        this.activeModal = 'project-modal';
+        window.audioSystem?.playSoundEffect('select');
+    }
+
+    openGenericModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        this.activeModal = modalId;
+
+        // Setup close button
+        const closeBtn = modal.querySelector('.modal-close');
+        if (closeBtn && !closeBtn.dataset.listener) {
+            closeBtn.addEventListener('click', () => this.closeModal(modalId));
+            closeBtn.dataset.listener = 'true';
+        }
+
+        // Close on background click
+        if (!modal.dataset.listener) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) this.closeModal(modalId);
+            });
+            modal.dataset.listener = 'true';
+        }
+
+        window.audioSystem?.playSoundEffect('select');
+    }
+
+    closeModal(modalId = this.activeModal) {
+        if (!modalId) return;
+
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            this.activeModal = null;
+        }
+
+        window.audioSystem?.playSoundEffect('back');
+    }
+    
+    openProjectModalWithData(projectId) {
         const projectData = projectsData[projectId];
         if (!projectData) return;
         
@@ -60,9 +108,7 @@ class NavigationSystem {
         
         if (modalImage) {
             modalImage.src = projectData.image;
-            modalImage.onerror = () => {
-                modalImage.classList.add('hidden');
-            };
+            modalImage.onerror = () => modalImage.classList.add('hidden');
         }
         
         if (detailsList) {
@@ -73,52 +119,79 @@ class NavigationSystem {
                 detailsList.appendChild(li);
             });
         }
-        
-        if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        window.audioSystem?.playSoundEffect('select');
-    }
-    
-    closeModal() {
-        const modal = document.getElementById('project-modal');
-        if (modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        window.audioSystem?.playSoundEffect('back');
+
+        this.openProjectModal(modal);
     }
     
     setupEventListeners() {
         try {
-            // Project Card Click - Open Modal
-            const projectCards = document.querySelectorAll('.project-card-mini');
-            if (projectCards && projectCards.length > 0) {
-                projectCards.forEach(card => {
-                    card.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const projectId = card.dataset.projectId;
-                        this.openModal(projectId);
-                    });
-                });
-            }
-        
-            // Intro Fighter Selection (on landing page)
-            const introFighters = document.querySelectorAll('.intro-fighter');
-            if (introFighters && introFighters.length > 0) {
-                introFighters.forEach(fighter => {
-                    fighter.addEventListener('click', () => {
-                        const fighterType = fighter.dataset.fighter;
+            const gameContainer = document.getElementById('game-container');
+            if (!gameContainer) return;
+
+            gameContainer.addEventListener('click', (e) => {
+                const target = e.target;
+
+                // Modal buttons (ABOUT, CONTACT)
+                if (target.classList.contains('modal-button') && target.dataset.modal) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.openGenericModal(target.dataset.modal);
+                    return;
+                }
+
+                // Navigation buttons (PROJECTS, etc)
+                if (target.classList.contains('nav-button') && target.dataset.screen) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.navigateTo(target.dataset.screen);
+                    window.audioSystem?.playSoundEffect('select');
+                    return;
+                }
+
+                // Back buttons
+                if (target.classList.contains('btn-arcade') && 
+                    (target.textContent.includes('BACK') || target.textContent.includes('HOME'))) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.navigateTo('screen-intro');
+                    window.audioSystem?.playSoundEffect('back');
+                    return;
+                }
+
+                // Project cards
+                if (target.closest('.project-card-mini')) {
+                    const card = target.closest('.project-card-mini');
+                    const projectId = card.dataset.projectId;
+                    if (projectId) {
+                        this.openProjectModalWithData(projectId);
+                    }
+                    return;
+                }
+
+                // Intro fighters
+                if (target.closest('.intro-fighter')) {
+                    const fighter = target.closest('.intro-fighter');
+                    const fighterType = fighter.dataset.fighter;
+                    if (fighterType) {
                         this.navigateTo(`profile-${fighterType}`);
                         window.audioSystem?.playSoundEffect('select');
-                    });
-                });
-            }
-            
-            // Start Button
+                    }
+                    return;
+                }
+
+                // Fighter cards (in fighter selection)
+                if (target.closest('.fighter-card')) {
+                    const card = target.closest('.fighter-card');
+                    const fighterType = card.dataset.fighter;
+                    if (fighterType) {
+                        this.navigateTo(`profile-${fighterType}`);
+                        window.audioSystem?.playSoundEffect('select');
+                    }
+                    return;
+                }
+            });
+
+            // Specific button handlers
             const startBtn = document.getElementById('btn-start');
             if (startBtn) {
                 startBtn.addEventListener('click', () => {
@@ -126,39 +199,7 @@ class NavigationSystem {
                     window.audioSystem?.playSoundEffect('confirm');
                 });
             }
-            
-            // Fighter Selection
-            const fighterCards = document.querySelectorAll('.fighter-card');
-            if (fighterCards && fighterCards.length > 0) {
-                fighterCards.forEach(card => {
-                    card.addEventListener('click', () => {
-                        const fighterType = card.dataset.fighter;
-                        this.navigateTo(`profile-${fighterType}`);
-                        window.audioSystem?.playSoundEffect('select');
-                    });
-                    
-                    // Hover effect
-                    card.addEventListener('mouseenter', () => {
-                        window.audioSystem?.playSoundEffect('select');
-                    });
-                });
-            }
-            
-            // Back Buttons - Use Event Delegation for dynamically generated buttons
-            const gameContainer = document.getElementById('game-container');
-            if (gameContainer) {
-                gameContainer.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('btn-arcade') && 
-                        (e.target.textContent.includes('BACK') || e.target.textContent.includes('HOME'))) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        this.navigateTo('screen-intro');
-                        window.audioSystem?.playSoundEffect('back');
-                    }
-                });
-            }
-            
-            // Home Button
+
             const homeBtn = document.getElementById('btn-home');
             if (homeBtn) {
                 homeBtn.addEventListener('click', () => {
@@ -166,20 +207,7 @@ class NavigationSystem {
                     window.audioSystem?.playSoundEffect('back');
                 });
             }
-            
-            // Menu Buttons
-            const menuBtns = document.querySelectorAll('.menu-btn');
-            if (menuBtns && menuBtns.length > 0) {
-                menuBtns.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const screenId = btn.dataset.screen;
-                        if (screenId) {
-                            this.navigateTo(screenId);
-                            window.audioSystem?.playSoundEffect('select');
-                        }
-                    });
-                });
-            }
+
         } catch (error) {
             console.error('Error in setupEventListeners:', error);
         }
@@ -187,48 +215,52 @@ class NavigationSystem {
     
     setupKeyboardShortcuts() {
         document.addEventListener('keydown', (e) => {
-            switch(e.key) {
-                case 'Escape':
-                    // Check if modal is open
-                    const modal = document.getElementById('project-modal');
-                    if (modal && modal.classList.contains('active')) {
-                        // Close modal
-                        this.closeModal();
-                    } else if (this.currentScreen !== 'screen-intro') {
-                        // Go back to home if not already there
-                        this.navigateTo('screen-intro');
-                        window.audioSystem?.playSoundEffect('back');
-                    }
-                    break;
-                case 'ArrowUp':
-                case 'ArrowDown':
-                case 'ArrowLeft':
-                case 'ArrowRight':
-                    // Future: Could implement arrow key navigation between fighters
-                    window.audioSystem?.playSoundEffect('select');
-                    break;
+            if (e.key !== 'Escape') return;
+
+            e.preventDefault();
+
+            // Check modals in priority order
+            const modalChecks = [
+                'project-modal',
+                'about-modal',
+                'contact-modal'
+            ];
+
+            for (const modalId of modalChecks) {
+                const modal = document.getElementById(modalId);
+                if (modal && modal.classList.contains('active')) {
+                    this.closeModal(modalId);
+                    return;
+                }
+            }
+
+            // Otherwise go home
+            if (this.currentScreen !== 'screen-intro') {
+                this.navigateTo('screen-intro');
+                window.audioSystem?.playSoundEffect('back');
+            }
+        });
+
+        // Arrow keys for audio feedback
+        document.addEventListener('keydown', (e) => {
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                window.audioSystem?.playSoundEffect('select');
             }
         });
     }
     
     navigateTo(screenId) {
-        // Hide current screen
         const currentScreen = document.getElementById(this.currentScreen);
         if (currentScreen) {
             currentScreen.classList.remove('active');
         }
         
-        // Show new screen
         const newScreen = document.getElementById(screenId);
         if (newScreen) {
             newScreen.classList.add('active');
             this.currentScreen = screenId;
             this.screenHistory.push(screenId);
-            
-            // Add transition effect
             this.addTransitionEffect();
-            
-            // Scroll to top
             window.scrollTo(0, 0);
         }
     }
@@ -261,15 +293,6 @@ class NavigationSystem {
             setTimeout(() => {
                 screen.style.animation = '';
             }, 10);
-            
-            // Close expanded project cards when navigating
-            screen.querySelectorAll('.project-card-mini.expanded').forEach(card => {
-                card.classList.remove('expanded');
-                const bullets = card.querySelector('.project-bullets');
-                if (bullets) {
-                    bullets.style.display = 'none';
-                }
-            });
         }
     }
     
