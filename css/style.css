@@ -493,6 +493,27 @@ html {
     color: var(--color-white);
 }
 
+.project-card-mini .project-date {
+    font-size: 10px;
+    color: var(--color-warning);
+    margin-bottom: 8px;
+}
+
+.project-card-mini .project-bullets {
+    list-style: square;
+    padding-left: 16px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.project-card-mini .project-bullets li {
+    font-size: 11px;
+    color: var(--color-white);
+    line-height: 1.6;
+}
+
 /* ===== ABOUT PAGE ===== */
 .about-container {
     width: 100%;
