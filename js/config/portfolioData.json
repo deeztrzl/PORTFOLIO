@@ -227,13 +227,33 @@
         "Strengthened authentication workflows through automated detection pipelines."
       ]
     },
+    "canopy-system": {
+      "title": "Automatic Canopy System",
+      "date": "April 2024",
+      "image": "assets/images/projects/canopy-system.png",
+      "details": [
+        "Designed and built an automatic canopy prototype using Arduino Uno, stepper motor, and various sensors (temperature, light, and rain sensors).",
+        "Developed a custom graphical user interface (GUI) connected to both sensors and actuators in real time.",
+        "Integrated control systems and microcontroller programming to automate canopy movement based on weather conditions.",
+        "Applied an innovative mechanism utilizing gravity to assist canopy motion, earning special recognition from lecturers for its efficiency and creativity."
+      ]
+    },
     "hospital-sim": {
       "title": "Smart Hospital Simulation",
       "date": "Dec 2024–Jan 2025",
       "image": "assets/images/projects/hospital-sim.png",
       "details": [
-        "Designed a prototype of an intelligent hospital system using Arduino and sensors.",
-        "Programmed sensor responses and integrated components into a working model."
+        "Designed a prototype of an intelligent hospital system using Arduino and basic sensors (temperature, IR, Ultrasonic, etc).",
+        "Programmed sensor responses and integrated the components into a working model."
+      ]
+    },
+    "identity-verification": {
+      "title": "Identity Verification System (Internship)",
+      "date": "Jul–Aug 2025",
+      "image": "assets/images/projects/identity-verification.png",
+      "details": [
+        "Developed a computer-vision-based verification system using OpenCV and YOLOv8n.",
+        "Strengthened authentication workflows through automated detection pipelines."
       ]
     },
     "typer-game": {
@@ -241,21 +261,9 @@
       "date": "Sep 2024–Jan 2025",
       "image": "assets/images/projects/typer-game.png",
       "details": [
-        "Designed and built an educational typing game using Java and OOP principles.",
-        "Developed interactive features that improve typing coordination.",
-        "Collaborated on class-based architecture with inheritance and encapsulation."
-      ]
-    },
-    "canopy-system": {
-      "title": "Automatic Canopy System",
-      "date": "Ongoing",
-      "image": "assets/images/projects/canopy-system.png",
-      "details": [
-        "Designed and implemented an IoT-based automated agricultural system.",
-        "Integrated Arduino microcontrollers with multiple sensors (light, humidity, temperature).",
-        "Developed real-time monitoring and control system for greenhouse canopy.",
-        "Implemented wireless communication for remote monitoring and automation.",
-        "Created user interface for system configuration and status monitoring."
+        "Designed and built an educational typing game using Java and object-oriented principles.",
+        "Developed interactive features that enhance typing coordination through ocean-themed gameplay.",
+        "Collaborated in a team to structure the code using classes, inheritance, and encapsulation, optimizing for readability and scalability."
       ]
     },
     "jmo-redesign": {
