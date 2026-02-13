@@ -12,344 +12,65 @@
     <!-- CRT Effect Overlay -->
     <div id="crt-overlay" class="crt-overlay"></div>
     
-    <!-- Sound Control & Settings -->
-    <div class="game-controls">
-        <button id="sound-toggle" class="btn-control" title="Toggle Sound">🔊</button>
-        <button id="crt-toggle" class="btn-control" title="Toggle CRT Effect">📺</button>
-    </div>
-
     <!-- Main Container -->
     <div id="game-container" class="game-container">
         
         <!-- Landing/Intro Screen -->
         <section id="screen-intro" class="screen active">
             <div class="intro-content">
-                <div class="arcade-title">
+                <div class="intro-header">
                     <h1 class="pixel-text glitch-text">RIFKI DESTRIZAL</h1>
                     <p class="pixel-text subtitle">PORTFOLIO ARCADE</p>
                 </div>
-                <div class="intro-art">
-                    <img src="assets/images/rifki-portrait.png" alt="Rifki Destrizal" class="portrait-image">
+                
+                <div class="intro-columns">
+                    <!-- Left Column: Photo -->
+                    <div class="intro-left">
+                        <div class="intro-photo-container">
+                            <img src="assets/images/general.png" alt="Rifki Destrizal" class="portrait-image">
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: Fighters List -->
+                    <div class="intro-right">
+                        <div class="intro-fighters-list">
+                            <div class="intro-fighter" data-fighter="ai-engineer">
+                                <div class="intro-fighter-icon">🤖</div>
+                                <div class="intro-fighter-info">
+                                    <h4>AI ENGINEER</h4>
+                                    <p>ML • NLP • CV</p>
+                                </div>
+                            </div>
+                            <div class="intro-fighter" data-fighter="mechatronics">
+                                <div class="intro-fighter-icon">⚡</div>
+                                <div class="intro-fighter-info">
+                                    <h4>MECHATRONICS</h4>
+                                    <p>HARDWARE • EMBEDDED</p>
+                                </div>
+                            </div>
+                            <div class="intro-fighter" data-fighter="speaker">
+                                <div class="intro-fighter-icon">🎤</div>
+                                <div class="intro-fighter-info">
+                                    <h4>MC / SPEAKER</h4>
+                                    <p>STAGE • PRESENCE</p>
+                                </div>
+                            </div>
+                            <div class="intro-fighter" data-fighter="designer">
+                                <div class="intro-fighter-icon">🎨</div>
+                                <div class="intro-fighter-info">
+                                    <h4>DESIGNER</h4>
+                                    <p>UI/UX • VISUAL</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="start-button">
-                    <button id="btn-start" class="btn-arcade blink">PRESS ENTER TO START</button>
-                </div>
+                
                 <p class="pixel-text footer-text">© 2025 • ALL RIGHTS RESERVED</p>
             </div>
         </section>
 
-        <!-- Fighter Select Screen -->
-        <section id="screen-fighters" class="screen">
-            <div class="fighters-container">
-                <h2 class="pixel-text fight-title">CHOOSE YOUR FIGHTER</h2>
-                <div class="fighters-grid">
-                    <div class="fighter-card" data-fighter="ai-engineer">
-                        <div class="fighter-sprite ai-sprite"></div>
-                        <h3 class="fighter-name">AI ENGINEER</h3>
-                        <p class="fighter-desc">ML • NLP • CV</p>
-                    </div>
-                    <div class="fighter-card" data-fighter="mechatronics">
-                        <div class="fighter-sprite mechatronics-sprite"></div>
-                        <h3 class="fighter-name">MECHATRONICS</h3>
-                        <p class="fighter-desc">HARDWARE • EMBEDDED</p>
-                    </div>
-                    <div class="fighter-card" data-fighter="speaker">
-                        <div class="fighter-sprite speaker-sprite"></div>
-                        <h3 class="fighter-name">MC / SPEAKER</h3>
-                        <p class="fighter-desc">STAGE • PRESENCE</p>
-                    </div>
-                    <div class="fighter-card" data-fighter="designer">
-                        <div class="fighter-sprite designer-sprite"></div>
-                        <h3 class="fighter-name">DESIGNER</h3>
-                        <p class="fighter-desc">UI/UX • VISUAL</p>
-                    </div>
-                </div>
-                <button id="btn-back-fighters" class="btn-arcade">BACK</button>
-            </div>
-        </section>
-
-        <!-- AI Engineer Profile -->
-        <section id="profile-ai-engineer" class="screen profile-screen">
-            <div class="profile-container">
-                <div class="profile-header">
-                    <div class="profile-sprite ai-sprite-large"></div>
-                    <div class="profile-info">
-                        <h2 class="profile-title">RIFKI — THE AI ENGINEER</h2>
-                        <p class="profile-subtitle">Architect of Intelligent Systems</p>
-                    </div>
-                </div>
-
-                <div class="stats-bar">
-                    <div class="stat">
-                        <span class="stat-label">INTELLIGENCE</span>
-                        <div class="stat-bar-fill" style="width: 95%;">95%</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">CREATIVITY</span>
-                        <div class="stat-bar-fill" style="width: 85%;">85%</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">PROBLEM SOLVING</span>
-                        <div class="stat-bar-fill" style="width: 92%;">92%</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">SPEED</span>
-                        <div class="stat-bar-fill" style="width: 88%;">88%</div>
-                    </div>
-                </div>
-
-                <div class="profile-section">
-                    <h3 class="section-title">SKILLS</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">🤖 Machine Learning</div>
-                        <div class="skill-item">💬 NLP</div>
-                        <div class="skill-item">👁️ Computer Vision</div>
-                        <div class="skill-item">🐍 Python</div>
-                        <div class="skill-item">📊 Data Analysis</div>
-                        <div class="skill-item">🧠 Deep Learning</div>
-                    </div>
-                </div>
-
-                <div class="profile-section">
-                    <h3 class="section-title">SPECIAL MOVE: NEURAL BURST</h3>
-                    <p class="special-move-desc">Deploy an advanced ML model that decimates technical challenges in milliseconds.</p>
-                </div>
-
-                <div class="profile-section">
-                    <h3 class="section-title">KEY PROJECTS</h3>
-                    <div class="projects-mini">
-                        <div class="project-card-mini" data-project-id="motor-prediction">
-                            <div class="project-card-header">
-                                <h4>Electric Motor Health Prediction System</h4>
-                                <p class="project-date">Nov–Dec 2025</p>
-                            </div>
-                        </div>
-                        <div class="project-card-mini" data-project-id="fashion-ecommerce">
-                            <div class="project-card-header">
-                                <h4>Fashion E-Commerce Landing Website</h4>
-                                <p class="project-date">Nov 2025</p>
-                            </div>
-
-                        </div>
-                        <div class="project-card-mini" data-project-id="doc-analyzer">
-                            <div class="project-card-header">
-                                <h4>AI Agent Document Analyzer</h4>
-                                <p class="project-date">Nov 2025</p>
-                            </div>
-                        </div>
-                        <div class="project-card-mini" data-project-id="identity-verification">
-                            <div class="project-card-header">
-                                <h4>Identity Verification System (Internship)</h4>
-                                <p class="project-date">Jul–Aug 2025</p>
-                            </div>
-                        </div>
-                        <div class="project-card-mini" data-project-id="hospital-sim">
-                            <div class="project-card-header">
-                                <h4>Smart Hospital Simulation</h4>
-                                <p class="project-date">Dec 2024–Jan 2025</p>
-                            </div>
-                        </div>
-                        <div class="project-card-mini" data-project-id="typer-game">
-                            <div class="project-card-header">
-                                <h4>Mechiu Typer Game</h4>
-                                <p class="project-date">Sep 2024–Jan 2025</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button id="btn-back-ai" class="btn-arcade">BACK TO SELECT</button>
-            </div>
-        </section>
-
-        <!-- Mechatronics Engineer Profile -->
-        <section id="profile-mechatronics" class="screen profile-screen">
-            <div class="profile-container">
-                <div class="profile-header">
-                    <div class="profile-sprite mechatronics-sprite-large"></div>
-                    <div class="profile-info">
-                        <h2 class="profile-title">RIFKI — THE ENGINEER</h2>
-                        <p class="profile-subtitle">Master of Hardware & Systems</p>
-                    </div>
-                </div>
-
-                <div class="stats-bar">
-                    <div class="stat">
-                        <span class="stat-label">STRENGTH</span>
-                        <div class="stat-bar-fill" style="width: 90%;">90%</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">TECHNICAL</span>
-                        <div class="stat-bar-fill" style="width: 88%;">88%</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">PRECISION</span>
-                        <div class="stat-bar-fill" style="width: 93%;">93%</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">CREATIVITY</span>
-                        <div class="stat-bar-fill" style="width: 82%;">82%</div>
-                    </div>
-                </div>
-
-                <div class="profile-section">
-                    <h3 class="section-title">SKILLS</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">⚡ Electronics</div>
-                        <div class="skill-item">🔧 Arduino</div>
-                        <div class="skill-item">📡 Sensors & IoT</div>
-                        <div class="skill-item">🎮 Embedded Systems</div>
-                        <div class="skill-item">🔌 Circuit Design</div>
-                        <div class="skill-item">⚙️ Control Systems</div>
-                    </div>
-                </div>
-
-                <div class="profile-section">
-                    <h3 class="section-title">SPECIAL MOVE: MECHANICAL SURGE</h3>
-                    <p class="special-move-desc">Unleash a powerful hardware integration attack that fuses electronics and software.</p>
-                </div>
-
-                <div class="profile-section">
-                    <h3 class="section-title">KEY PROJECTS</h3>
-                    <div class="projects-mini">
-                        <div class="project-card-mini">
-                            <h4>Automatic Canopy System</h4>
-                            <p>IoT-based automated agricultural system</p>
-                        </div>
-                        <div class="project-card-mini">
-                            <h4>Smart Hospital Simulation</h4>
-                            <p>Hardware-software integrated hospital system</p>
-                        </div>
-                    </div>
-                </div>
-
-                <button id="btn-back-mech" class="btn-arcade">BACK TO SELECT</button>
-            </div>
-        </section>
-
-        <!-- MC / Speaker Profile -->
-        <section id="profile-speaker" class="screen profile-screen">
-            <div class="profile-container">
-                <div class="profile-header">
-                    <div class="profile-sprite speaker-sprite-large"></div>
-                    <div class="profile-info">
-                        <h2 class="profile-title">RIFKI — THE SPEAKER</h2>
-                        <p class="profile-subtitle">Master of the Spotlight</p>
-                    </div>
-                </div>
-
-                <div class="stats-bar">
-                    <div class="stat">
-                        <span class="stat-label">CHARISMA</span>
-                        <div class="stat-bar-fill" style="width: 96%;">96%</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">CONFIDENCE</span>
-                        <div class="stat-bar-fill" style="width: 94%;">94%</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">COMMUNICATION</span>
-                        <div class="stat-bar-fill" style="width: 92%;">92%</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">LEADERSHIP</span>
-                        <div class="stat-bar-fill" style="width: 89%;">89%</div>
-                    </div>
-                </div>
-
-                <div class="profile-section">
-                    <h3 class="section-title">ACHIEVEMENTS</h3>
-                    <div class="achievements-list">
-                        <div class="achievement">🥈 2nd Runner Up Putra UPI Purwakarta 2024</div>
-                        <div class="achievement">🏆 Top 7 Putra Bumi Siliwangi 2025</div>
-                    </div>
-                </div>
-
-                <div class="profile-section">
-                    <h3 class="section-title">SKILLS</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">🎤 Public Speaking</div>
-                        <div class="skill-item">🎭 Hosting</div>
-                        <div class="skill-item">💬 Communication</div>
-                        <div class="skill-item">👥 Leadership</div>
-                        <div class="skill-item">🎯 Presentation</div>
-                        <div class="skill-item">✨ Charisma</div>
-                    </div>
-                </div>
-
-                <div class="profile-section">
-                    <h3 class="section-title">SPECIAL MOVE: SONIC BOOM</h3>
-                    <p class="special-move-desc">Deliver a powerful message that captivates audiences and commands respect.</p>
-                </div>
-
-                <button id="btn-back-speaker" class="btn-arcade">BACK TO SELECT</button>
-            </div>
-        </section>
-
-        <!-- Designer Profile -->
-        <section id="profile-designer" class="screen profile-screen">
-            <div class="profile-container">
-                <div class="profile-header">
-                    <div class="profile-sprite designer-sprite-large"></div>
-                    <div class="profile-info">
-                        <h2 class="profile-title">RIFKI — THE DESIGNER</h2>
-                        <p class="profile-subtitle">Architect of User Experiences</p>
-                    </div>
-                </div>
-
-                <div class="stats-bar">
-                    <div class="stat">
-                        <span class="stat-label">CREATIVITY</span>
-                        <div class="stat-bar-fill" style="width: 96%;">96%</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">AESTHETICS</span>
-                        <div class="stat-bar-fill" style="width: 94%;">94%</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">USER FOCUS</span>
-                        <div class="stat-bar-fill" style="width: 91%;">91%</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">INNOVATION</span>
-                        <div class="stat-bar-fill" style="width: 88%;">88%</div>
-                    </div>
-                </div>
-
-                <div class="profile-section">
-                    <h3 class="section-title">SKILLS</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">🎨 UI/UX Design</div>
-                        <div class="skill-item">🖌️ Figma</div>
-                        <div class="skill-item">♿ WCAG 2.1</div>
-                        <div class="skill-item">👤 Personas</div>
-                        <div class="skill-item">📐 Prototyping</div>
-                        <div class="skill-item">✨ Visual Design</div>
-                    </div>
-                </div>
-
-                <div class="profile-section">
-                    <h3 class="section-title">SPECIAL MOVE: PIXEL SLASH</h3>
-                    <p class="special-move-desc">Create stunning visual interfaces that elegantly solve user problems.</p>
-                </div>
-
-                <div class="profile-section">
-                    <h3 class="section-title">KEY PROJECTS</h3>
-                    <div class="projects-mini">
-                        <div class="project-card-mini">
-                            <h4>JMO UI/UX Redesign</h4>
-                            <p>Comprehensive redesign with user research</p>
-                        </div>
-                        <div class="project-card-mini">
-                            <h4>Social Media Content</h4>
-                            <p>Visual storytelling and branding</p>
-                        </div>
-                    </div>
-                </div>
-
-                <button id="btn-back-designer" class="btn-arcade">BACK TO SELECT</button>
-            </div>
-        </section>
+        <!-- Dynamically Generated Profiles (ProfileGenerator.js) -->
 
         <!-- About Page -->
         <section id="screen-about" class="screen">
@@ -494,15 +215,6 @@
                 <button id="btn-back-contact" class="btn-arcade">BACK</button>
             </div>
         </section>
-
-        <!-- Menu Bar -->
-        <nav class="game-menu">
-            <button class="menu-btn" data-screen="screen-fighters">FIGHTERS</button>
-            <button class="menu-btn" data-screen="screen-about">ABOUT</button>
-            <button class="menu-btn" data-screen="screen-projects">PROJECTS</button>
-            <button class="menu-btn" data-screen="screen-contact">CONTACT</button>
-            <button class="menu-btn" id="btn-home">HOME</button>
-        </nav>
     </div>
 
     <!-- Project Modal Popup -->
@@ -523,13 +235,23 @@
     </div>
 
     <!-- Audio Element -->
-    <audio id="game-audio" loop>
-        <source src="assets/audio/arcade-bgm.mp3" type="audio/mpeg">
+    <audio id="game-audio" loop autoplay>
+        <source src="assets/audio/Jeremy Blake - Powerup! ♫ NO COPYRIGHT 8-bit Music (1).mp3" type="audio/mpeg">
     </audio>
 
-    <script src="js/audio.js"></script>
-    <script src="js/sprites.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/effects.js"></script>
+    <!-- Config & Data -->
+    <script src="js/config/dataLoader.js"></script>
+    
+    <!-- Systems -->
+    <script src="js/systems/audio.js"></script>
+    <script src="js/systems/sprites.js"></script>
+    <script src="js/systems/navigation.js"></script>
+    <script src="js/systems/effects.js"></script>
+    
+    <!-- Main Entry Point -->
+    <script src="js/main.js"></script>
+    
+    <!-- Profile Generator (must load after main.js) -->
+    <script src="js/systems/profileGenerator.js"></script>
 </body>
 </html>

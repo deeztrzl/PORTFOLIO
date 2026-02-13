@@ -114,8 +114,156 @@ html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 40px;
-    padding: 20px;
+    gap: 30px;
+    padding: 40px 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.intro-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.intro-header h1 {
+    font-size: 48px;
+    color: var(--color-white);
+    text-shadow: 4px 4px 0px var(--color-accent),
+                 8px 8px 0px var(--color-secondary);
+    margin: 0;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+.intro-header .subtitle {
+    font-size: 16px;
+    color: var(--color-secondary);
+    text-shadow: 2px 2px 0px var(--color-navy);
+    margin: 0;
+}
+
+.intro-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    width: 100%;
+    align-items: center;
+}
+
+.intro-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro-photo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portrait-image {
+    width: 350px;
+    height: auto;
+    max-height: 500px;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    filter: drop-shadow(0 0 20px rgba(255, 0, 255, 0.5));
+}
+
+.profile-header .portrait-image {
+    width: 120px;
+    max-height: 180px;
+}
+
+.intro-right {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    text-align: left;
+}
+
+.intro-fighters-title {
+    font-size: 18px;
+    color: var(--color-secondary);
+    text-shadow: 2px 2px 0px var(--color-black);
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+.intro-fighters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.intro-fighter {
+    background: linear-gradient(135deg, #1a3a5f, var(--color-navy));
+    border: 2px solid var(--color-secondary);
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.intro-fighter:hover {
+    background: linear-gradient(135deg, var(--color-secondary), #00cccc);
+    color: var(--color-navy);
+    transform: translate(-2px, -2px);
+    box-shadow: 2px 2px 0px var(--color-accent);
+}
+
+.intro-fighter-icon {
+    font-size: 28px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.intro-fighter-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.intro-fighter-info h4 {
+    font-size: 12px;
+    color: var(--color-secondary);
+    margin: 0;
+    font-family: var(--font-pixel);
+    font-weight: bold;
+}
+
+.intro-fighter:hover .intro-fighter-info h4 {
+    color: var(--color-navy);
+}
+
+.intro-fighter-info p {
+    font-size: 10px;
+    color: var(--color-white);
+    margin: 0;
+    font-family: var(--font-pixel);
+}
+
+.intro-fighter:hover .intro-fighter-info p {
+    color: var(--color-navy);
+}
+
+.intro-action {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.intro-prompt {
+    font-size: 13px;
+    color: var(--color-warning);
+    margin: 0;
 }
 
 .arcade-title h1 {
@@ -139,18 +287,6 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.portrait-image {
-    width: 140px;
-    height: auto;
-    max-height: 200px;
-    border: 4px solid var(--color-white);
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
-    animation: pixelPulse 2s infinite;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
 }
 
 .pixel-box {
@@ -1564,6 +1700,46 @@ html {
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
+    .intro-columns {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .intro-header h1 {
+        font-size: 32px;
+    }
+    
+    .intro-header .subtitle {
+        font-size: 14px;
+    }
+    
+    .portrait-image {
+        width: 150px;
+        max-height: 200px;
+    }
+    
+    .intro-fighters-list {
+        gap: 12px;
+    }
+    
+    .intro-fighter {
+        padding: 10px 12px;
+        gap: 12px;
+    }
+    
+    .intro-fighter-icon {
+        font-size: 24px;
+        min-width: 35px;
+    }
+    
+    .intro-fighter-info h4 {
+        font-size: 11px;
+    }
+    
+    .intro-fighter-info p {
+        font-size: 9px;
+    }
+    
     .project-modal-content {
         padding: 20px;
         max-width: 95%;

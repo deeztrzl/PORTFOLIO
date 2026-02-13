@@ -1,0 +1,275 @@
+{
+  "profile": {
+    "name": "RIFKI DESTRIZAL",
+    "title": "PORTFOLIO ARCADE",
+    "bio": "Second-year Mechatronics and Artificial Intelligence student at Universitas Pendidikan Indonesia with experience in AI engineering, UI/UX design, software development, and mechatronics projects.",
+    "email": "rdestrizal@gmail.com",
+    "socials": {
+      "linkedin": "https://linkedin.com/in/rifkidestrizal",
+      "github": "https://github.com/deeztrzl"
+    },
+    "education": [
+      {
+        "institution": "Universitas Pendidikan Indonesia",
+        "program": "Mechatronics & AI",
+        "period": "2023 - Present"
+      },
+      {
+        "institution": "SMA Negeri 2 Bogor",
+        "program": "MIPA",
+        "period": "2021 - 2023"
+      }
+    ]
+  },
+  "roles": {
+    "ai-engineer": {
+      "title": "RIFKI — THE AI ENGINEER",
+      "subtitle": "Architect of Intelligent Systems",
+      "emoji": "🤖",
+      "image": "assets/images/ai engineer.png",
+      "stats": [
+        {
+          "label": "INTELLIGENCE",
+          "value": 95
+        },
+        {
+          "label": "CREATIVITY",
+          "value": 85
+        },
+        {
+          "label": "PROBLEM SOLVING",
+          "value": 92
+        },
+        {
+          "label": "SPEED",
+          "value": 88
+        }
+      ],
+      "skills": [
+        "🤖 Machine Learning",
+        "💬 NLP",
+        "👁️ Computer Vision",
+        "🐍 Python",
+        "📊 Data Analysis",
+        "🧠 Deep Learning"
+      ],
+      "specialMove": "NEURAL BURST",
+      "specialMoveDesc": "Deploy an advanced ML model that decimates technical challenges in milliseconds.",
+      "projects": [
+        "motor-prediction",
+        "fashion-ecommerce",
+        "doc-analyzer",
+        "identity-verification",
+        "hospital-sim",
+        "typer-game"
+      ]
+    },
+    "mechatronics": {
+      "title": "RIFKI — THE ENGINEER",
+      "subtitle": "Master of Hardware & Systems",
+      "emoji": "⚙️",
+      "image": "assets/images/mechanics.png",
+      "stats": [
+        {
+          "label": "STRENGTH",
+          "value": 90
+        },
+        {
+          "label": "TECHNICAL",
+          "value": 88
+        },
+        {
+          "label": "PRECISION",
+          "value": 93
+        },
+        {
+          "label": "CREATIVITY",
+          "value": 82
+        }
+      ],
+      "skills": [
+        "⚡ Electronics",
+        "🔧 Arduino",
+        "📡 Sensors & IoT",
+        "🎮 Embedded Systems",
+        "🔌 Circuit Design",
+        "⚙️ Control Systems"
+      ],
+      "specialMove": "MECHANICAL SURGE",
+      "specialMoveDesc": "Unleash a powerful hardware integration attack that fuses electronics and software.",
+      "projects": [
+        "canopy-system",
+        "hospital-sim"
+      ]
+    },
+    "speaker": {
+      "title": "RIFKI — THE SPEAKER",
+      "subtitle": "Master of the Spotlight",
+      "emoji": "🎤",
+      "image": "assets/images/mc.png",
+      "stats": [
+        {
+          "label": "CHARISMA",
+          "value": 96
+        },
+        {
+          "label": "CONFIDENCE",
+          "value": 94
+        },
+        {
+          "label": "COMMUNICATION",
+          "value": 92
+        },
+        {
+          "label": "LEADERSHIP",
+          "value": 89
+        }
+      ],
+      "skills": [
+        "🎤 Public Speaking",
+        "🎭 Hosting",
+        "💬 Communication",
+        "👥 Leadership",
+        "🎯 Presentation",
+        "✨ Charisma"
+      ],
+      "achievements": [
+        "🥈 2nd Runner Up Putra UPI Purwakarta 2024",
+        "🏆 Top 7 Putra Bumi Siliwangi 2025"
+      ],
+      "specialMove": "SONIC BOOM",
+      "specialMoveDesc": "Deliver a powerful message that captivates audiences and commands respect.",
+      "projects": []
+    },
+    "designer": {
+      "title": "RIFKI — THE DESIGNER",
+      "subtitle": "Architect of User Experiences",
+      "emoji": "🎨",
+      "image": "assets/images/designer.png",
+      "stats": [
+        {
+          "label": "CREATIVITY",
+          "value": 96
+        },
+        {
+          "label": "AESTHETICS",
+          "value": 94
+        },
+        {
+          "label": "USER FOCUS",
+          "value": 91
+        },
+        {
+          "label": "INNOVATION",
+          "value": 88
+        }
+      ],
+      "skills": [
+        "🎨 UI/UX Design",
+        "🖌️ Figma",
+        "♿ WCAG 2.1",
+        "👤 Personas",
+        "📐 Prototyping",
+        "✨ Visual Design"
+      ],
+      "specialMove": "PIXEL SLASH",
+      "specialMoveDesc": "Create stunning visual interfaces that elegantly solve user problems.",
+      "projects": [
+        "jmo-redesign",
+        "fashion-ecommerce"
+      ]
+    }
+  },
+  "projects": {
+    "motor-prediction": {
+      "title": "Electric Motor Health Prediction System",
+      "date": "Nov–Dec 2025",
+      "image": "assets/images/projects/motor-prediction.png",
+      "details": [
+        "Built a predictive maintenance system for single-phase electric motors using classical ML and fuzzy logic.",
+        "Processed sensor data (vibration, temperature, current, voltage) with cleaning, feature engineering, scaling, and labeling.",
+        "Trained and evaluated Random Forest and Gradient Boosting models using accuracy, F1-score, recall, MAE, and RMSE.",
+        "Designed a fuzzy expert system with IF-THEN rules for fault diagnosis and maintenance decisions.",
+        "Evaluated model performance and documented results for iterative improvement."
+      ]
+    },
+    "fashion-ecommerce": {
+      "title": "Fashion E-Commerce Landing Website",
+      "date": "Nov 2025",
+      "image": "assets/images/projects/fashion-ecommerce.png",
+      "details": [
+        "Developed a responsive women's fashion landing website using React and TypeScript.",
+        "Implemented multi-category catalog, testimonials, and WhatsApp integration to boost engagement.",
+        "Applied SEO optimization to improve visibility and page performance.",
+        "Utilized Vite, React Query, and shadcn/ui for scalable UI architecture."
+      ]
+    },
+    "doc-analyzer": {
+      "title": "AI Agent Document Analyzer",
+      "date": "Nov 2025",
+      "image": "assets/images/projects/doc-analyzer.png",
+      "details": [
+        "Built multi-format document reader supporting TXT, PDF, and DOCX.",
+        "Implemented TF-IDF summarization, keyword extraction, and document statistics engine.",
+        "Designed five custom tools: reader, summarizer, keyword extractor, stats analyzer, and search.",
+        "Developed NLP pipeline with stopword filtering, sentence scoring, and frequency-based ranking.",
+        "Enabled multi-turn conversation with natural language commands in Indonesian.",
+        "Implemented a robust CLI with color-styled outputs.",
+        "Designed modular architecture for orchestration, intent detection, tool flow, and context."
+      ]
+    },
+    "identity-verification": {
+      "title": "Identity Verification System (Internship)",
+      "date": "Jul–Aug 2025",
+      "image": "assets/images/projects/identity-verification.png",
+      "details": [
+        "Developed a computer-vision-based verification system using OpenCV and YOLOv8n.",
+        "Strengthened authentication workflows through automated detection pipelines."
+      ]
+    },
+    "hospital-sim": {
+      "title": "Smart Hospital Simulation",
+      "date": "Dec 2024–Jan 2025",
+      "image": "assets/images/projects/hospital-sim.png",
+      "details": [
+        "Designed a prototype of an intelligent hospital system using Arduino and sensors.",
+        "Programmed sensor responses and integrated components into a working model."
+      ]
+    },
+    "typer-game": {
+      "title": "Mechiu Typer Game",
+      "date": "Sep 2024–Jan 2025",
+      "image": "assets/images/projects/typer-game.png",
+      "details": [
+        "Designed and built an educational typing game using Java and OOP principles.",
+        "Developed interactive features that improve typing coordination.",
+        "Collaborated on class-based architecture with inheritance and encapsulation."
+      ]
+    },
+    "canopy-system": {
+      "title": "Automatic Canopy System",
+      "date": "Ongoing",
+      "image": "assets/images/projects/canopy-system.png",
+      "details": [
+        "Designed and implemented an IoT-based automated agricultural system.",
+        "Integrated Arduino microcontrollers with multiple sensors (light, humidity, temperature).",
+        "Developed real-time monitoring and control system for greenhouse canopy.",
+        "Implemented wireless communication for remote monitoring and automation.",
+        "Created user interface for system configuration and status monitoring."
+      ]
+    },
+    "jmo-redesign": {
+      "title": "JMO UI/UX Redesign",
+      "date": "Ongoing",
+      "image": "assets/images/projects/jmo-redesign.png",
+      "details": [
+        "Conducted comprehensive user research and persona development.",
+        "Redesigned user interface for improved accessibility and usability.",
+        "Applied WCAG 2.1 accessibility standards throughout the design.",
+        "Created high-fidelity prototypes in Figma with interactive flows.",
+        "Implemented responsive design for desktop, tablet, and mobile platforms.",
+        "Delivered detailed design documentation and component system."
+      ]
+    }
+  }
+}
