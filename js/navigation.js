@@ -17,6 +17,35 @@ class NavigationSystem {
     }
     
     setupEventListeners() {
+        // Project Card Expansion
+        document.querySelectorAll('.project-card-mini').forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isExpanded = card.classList.contains('expanded');
+                
+                // Close other expanded cards
+                document.querySelectorAll('.project-card-mini.expanded').forEach(openCard => {
+                    if (openCard !== card) {
+                        openCard.classList.remove('expanded');
+                        const bullets = openCard.querySelector('.project-bullets');
+                        bullets.style.display = 'none';
+                    }
+                });
+                
+                // Toggle current card
+                const bullets = card.querySelector('.project-bullets');
+                if (isExpanded) {
+                    card.classList.remove('expanded');
+                    bullets.style.display = 'none';
+                    window.audioSystem?.playSoundEffect('back');
+                } else {
+                    card.classList.add('expanded');
+                    bullets.style.display = 'flex';
+                    window.audioSystem?.playSoundEffect('select');
+                }
+            });
+        });
+        
         // Start Button
         document.getElementById('btn-start').addEventListener('click', () => {
             this.navigateTo('screen-fighters');
@@ -166,6 +195,15 @@ class NavigationSystem {
             setTimeout(() => {
                 screen.style.animation = '';
             }, 10);
+            
+            // Close expanded project cards when navigating
+            screen.querySelectorAll('.project-card-mini.expanded').forEach(card => {
+                card.classList.remove('expanded');
+                const bullets = card.querySelector('.project-bullets');
+                if (bullets) {
+                    bullets.style.display = 'none';
+                }
+            });
         }
     }
     
