@@ -3,6 +3,75 @@
    Screen & State Management
    ==================== */
 
+// Project Data
+const projectsData = {
+    'motor-prediction': {
+        title: 'Electric Motor Health Prediction System',
+        date: 'Nov–Dec 2025',
+        image: 'assets/images/projects/motor-prediction.png',
+        details: [
+            'Built a predictive maintenance system for single-phase electric motors using classical ML and fuzzy logic.',
+            'Processed sensor data (vibration, temperature, current, voltage) with cleaning, feature engineering, scaling, and labeling.',
+            'Trained and evaluated Random Forest and Gradient Boosting models using accuracy, F1-score, recall, MAE, and RMSE.',
+            'Designed a fuzzy expert system with IF-THEN rules for fault diagnosis and maintenance decisions.',
+            'Evaluated model performance and documented results for iterative improvement.'
+        ]
+    },
+    'fashion-ecommerce': {
+        title: 'Fashion E-Commerce Landing Website',
+        date: 'Nov 2025',
+        image: 'assets/images/projects/fashion-ecommerce.png',
+        details: [
+            'Developed a responsive women\'s fashion landing website using React and TypeScript.',
+            'Implemented multi-category catalog, testimonials, and WhatsApp integration to boost engagement.',
+            'Applied SEO optimization to improve visibility and page performance.',
+            'Utilized Vite, React Query, and shadcn/ui for scalable UI architecture.'
+        ]
+    },
+    'doc-analyzer': {
+        title: 'AI Agent Document Analyzer',
+        date: 'Nov 2025',
+        image: 'assets/images/projects/doc-analyzer.png',
+        details: [
+            'Built multi-format document reader supporting TXT, PDF, and DOCX.',
+            'Implemented TF-IDF summarization, keyword extraction, and document statistics engine.',
+            'Designed five custom tools: reader, summarizer, keyword extractor, stats analyzer, and search.',
+            'Developed NLP pipeline with stopword filtering, sentence scoring, and frequency-based ranking.',
+            'Enabled multi-turn conversation with natural language commands in Indonesian.',
+            'Implemented a robust CLI with color-styled outputs.',
+            'Designed modular architecture for orchestration, intent detection, tool flow, and context.'
+        ]
+    },
+    'identity-verification': {
+        title: 'Identity Verification System (Internship)',
+        date: 'Jul–Aug 2025',
+        image: 'assets/images/projects/identity-verification.png',
+        details: [
+            'Developed a computer-vision-based verification system using OpenCV and YOLOv8n.',
+            'Strengthened authentication workflows through automated detection pipelines.'
+        ]
+    },
+    'hospital-sim': {
+        title: 'Smart Hospital Simulation',
+        date: 'Dec 2024–Jan 2025',
+        image: 'assets/images/projects/hospital-sim.png',
+        details: [
+            'Designed a prototype of an intelligent hospital system using Arduino and sensors.',
+            'Programmed sensor responses and integrated components into a working model.'
+        ]
+    },
+    'typer-game': {
+        title: 'Mechiu Typer Game',
+        date: 'Sep 2024–Jan 2025',
+        image: 'assets/images/projects/typer-game.png',
+        details: [
+            'Designed and built an educational typing game using Java and OOP principles.',
+            'Developed interactive features that improve typing coordination.',
+            'Collaborated on class-based architecture with inheritance and encapsulation.'
+        ]
+    }
+};
+
 class NavigationSystem {
     constructor() {
         this.currentScreen = 'screen-intro';
@@ -14,35 +83,74 @@ class NavigationSystem {
     init() {
         this.setupEventListeners();
         this.setupKeyboardShortcuts();
+        this.setupModal();
+    }
+    
+    setupModal() {
+        const modal = document.getElementById('project-modal');
+        const closeBtn = document.getElementById('modal-close');
+        
+        // Close button
+        closeBtn.addEventListener('click', () => {
+            this.closeModal();
+        });
+        
+        // Close on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                this.closeModal();
+            }
+        });
+        
+        // Escape key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                this.closeModal();
+            }
+        });
+    }
+    
+    openModal(projectId) {
+        const projectData = projectsData[projectId];
+        if (!projectData) return;
+        
+        const modal = document.getElementById('project-modal');
+        document.getElementById('modal-title').textContent = projectData.title;
+        document.getElementById('modal-date').textContent = projectData.date;
+        
+        const modalImage = document.getElementById('modal-image');
+        modalImage.src = projectData.image;
+        modalImage.onerror = () => {
+            modalImage.classList.add('hidden');
+        };
+        
+        const detailsList = document.getElementById('modal-details');
+        detailsList.innerHTML = '';
+        projectData.details.forEach(detail => {
+            const li = document.createElement('li');
+            li.textContent = detail;
+            detailsList.appendChild(li);
+        });
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        window.audioSystem?.playSoundEffect('select');
+    }
+    
+    closeModal() {
+        const modal = document.getElementById('project-modal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        window.audioSystem?.playSoundEffect('back');
     }
     
     setupEventListeners() {
-        // Project Card Expansion
+        // Project Card Click - Open Modal
         document.querySelectorAll('.project-card-mini').forEach(card => {
             card.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const isExpanded = card.classList.contains('expanded');
-                
-                // Close other expanded cards
-                document.querySelectorAll('.project-card-mini.expanded').forEach(openCard => {
-                    if (openCard !== card) {
-                        openCard.classList.remove('expanded');
-                        const bullets = openCard.querySelector('.project-bullets');
-                        bullets.style.display = 'none';
-                    }
-                });
-                
-                // Toggle current card
-                const bullets = card.querySelector('.project-bullets');
-                if (isExpanded) {
-                    card.classList.remove('expanded');
-                    bullets.style.display = 'none';
-                    window.audioSystem?.playSoundEffect('back');
-                } else {
-                    card.classList.add('expanded');
-                    bullets.style.display = 'flex';
-                    window.audioSystem?.playSoundEffect('select');
-                }
+                const projectId = card.dataset.projectId;
+                this.openModal(projectId);
             });
         });
         

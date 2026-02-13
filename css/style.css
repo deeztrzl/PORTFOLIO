@@ -482,12 +482,6 @@ html {
     box-shadow: 2px 2px 0px var(--color-accent);
 }
 
-.project-card-mini.expanded {
-    min-height: auto;
-    background: linear-gradient(135deg, var(--color-secondary), #00cccc);
-    color: var(--color-navy);
-}
-
 .project-card-header {
     display: flex;
     flex-direction: column;
@@ -500,7 +494,7 @@ html {
     color: var(--color-secondary);
 }
 
-.project-card-mini.expanded h4 {
+.project-card-mini:hover h4 {
     color: var(--color-navy);
 }
 
@@ -515,26 +509,7 @@ html {
     margin: 0;
 }
 
-.project-card-mini.expanded .project-date {
-    color: var(--color-navy);
-}
-
-.project-card-mini .project-bullets {
-    list-style: square;
-    padding-left: 16px;
-    margin: 12px 0 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.project-card-mini .project-bullets li {
-    font-size: 11px;
-    color: var(--color-white);
-    line-height: 1.6;
-}
-
-.project-card-mini.expanded .project-bullets li {
+.project-card-mini:hover .project-date {
     color: var(--color-navy);
 }
 
@@ -1445,6 +1420,162 @@ html {
 
 .profile-container::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, var(--color-accent), var(--color-secondary));
+}
+
+/* ===== PROJECT MODAL ===== */
+.project-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.project-modal.active {
+    display: flex;
+}
+
+.project-modal-content {
+    background: linear-gradient(135deg, var(--color-navy), #0a1a2f);
+    border: 3px solid var(--color-secondary);
+    padding: 30px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.6),
+                inset 0 0 20px rgba(0, 255, 255, 0.2);
+    animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--color-accent);
+    border: 2px solid var(--color-white);
+    color: var(--color-navy);
+    width: 35px;
+    height: 35px;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-family: var(--font-pixel);
+    transition: var(--transition);
+    box-shadow: 2px 2px 0px var(--color-white);
+}
+
+.modal-close:hover {
+    background: var(--color-secondary);
+    box-shadow: 4px 4px 0px var(--color-white);
+    transform: translate(-2px, -2px);
+}
+
+.modal-close:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px var(--color-white);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-bottom: 2px solid var(--color-secondary);
+    padding-bottom: 15px;
+}
+
+.modal-title {
+    font-size: 22px;
+    color: var(--color-secondary);
+    font-family: var(--font-pixel);
+    margin: 0;
+    text-shadow: 2px 2px 0px var(--color-black);
+}
+
+.modal-date {
+    font-size: 12px;
+    color: var(--color-warning);
+    font-family: var(--font-pixel);
+    margin: 0;
+}
+
+.modal-image-section {
+    display: flex;
+    justify-content: center;
+    min-height: 200px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--color-accent);
+    padding: 15px;
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 250px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.modal-image.hidden {
+    display: none;
+}
+
+.modal-details {
+    list-style: square;
+    padding-left: 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-details li {
+    font-size: 13px;
+    color: var(--color-white);
+    font-family: var(--font-pixel);
+    line-height: 1.7;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .project-modal-content {
+        padding: 20px;
+        max-width: 95%;
+    }
+
+    .modal-title {
+        font-size: 18px;
+    }
+
+    .modal-details li {
+        font-size: 12px;
+    }
 }
 
 /* Terminal body scrollbar */
